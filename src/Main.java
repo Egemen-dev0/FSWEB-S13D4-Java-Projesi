@@ -1,5 +1,10 @@
 import com.project.superhuman.Human;
 import com.students.*;
+import comEgemen.Course;
+import comEgemen.Major;
+import comEgemen.Principal;
+import comEgemen.Student;
+import comEgemen.Teacher;
 
 public class Main {
     public static void main(String[] args) {
@@ -19,28 +24,45 @@ public class Main {
 
         System.out.println("Bu insan bu kadar koştu : "+ insanGokalp.runnerMeterValue());
 */
-        //read from config
-        Human.defaultTitle = "Yetişkin";
+        Teacher teacher1 = new Teacher("John Doe", 40, "Male", "T123", 5);
+        Major computerScience = new Major("Computer Science", teacher1, 10);
 
-        Egemen egemenInsanIki = new Egemen();
-        System.out.println("Egemenin sırrını söyle pls : " +egemenInsanIki.Unvan);
-        System.out.println("İşte Egemenin sırrı: " + egemenInsanIki.getEgemenSecret());
+        comEgemen.Student student1 = new comEgemen.Student("Alice Smith", 20, "Female", "S456", 5);
+        comEgemen.Student student2 = new comEgemen.Student("Bob Brown", 22, "Male", "S789", 5);
 
-        Gokalp gokalpInsanIkı = new Gokalp();
-        System.out.println("Egemenin sırrına inanma");
-        System.out.println("İşte Egemenin gerçek sırrı : " + gokalpInsanIkı.GetgokalpSecret());
+        computerScience.addStudent(student1);
+        computerScience.addStudent(student2);
 
-        Elif elifInsanIki = new Elif();
-        System.out.println("Gokalp in sırrını söyleme");
-        System.out.println("Gokalp in sırrını söyleme : " + elifInsanIki.getElifDeneme() );
+        Course javaProgramming = new Course("Java Programming", teacher1, 10);
+        javaProgramming.enrollStudent(student1);
+        javaProgramming.enrollStudent(student2);
 
+        Principal principal = new Principal("Jane Smith", 50, "Female", "P001", 5, "Office 101");
 
-        Enes enesInsan = new Enes();
-        System.out.println("Enes'in hobisi: " + enesInsan.getEnesHobie());
+        // Output the major details
+        System.out.println("Major: " + computerScience.getName());
+        System.out.println("Teacher: " + computerScience.getTeacher().getName());
+        System.out.println("Students: ");
+        for (comEgemen.Student student : computerScience.getStudents()) {
+            if (student != null) {
+                System.out.println("- " + student.getName());
+            }
+        }
 
-        Student tunc = new Student(44);
-        int kanyaYas = tunc.Kanka.yas;
+        // Output the course details
+        System.out.println("Course: " + javaProgramming.getCourseName());
+        System.out.println("Teacher: " + javaProgramming.getTeacher().getName());
+        System.out.println("Enrolled Students: ");
+        for (Student student : javaProgramming.getEnrolledStudents()) {
+            if (student != null) {
+                System.out.println("- " + student.getName());
+            }
+        }
+
+        // Output the principal details
+        System.out.println("Principal: " + principal.getName());
+        System.out.println("Office Number: " + principal.getOfficeNumber());
+    }
 
 
     }
-}
